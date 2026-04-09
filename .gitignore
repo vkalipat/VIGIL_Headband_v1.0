@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+._*
+
+# Plugin directories (Claude Code plugins)
+.blender-toolkit/
+.browser-pilot/
+.plugin-config/
+generated-images/
+
+# KiCad backup/temp files
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups/
+fp-info-cache
+*.tmp
+
+# IDE
+.vscode/
+.idea/

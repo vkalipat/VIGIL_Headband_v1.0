@@ -1,0 +1,118 @@
+(kicad_sch
+  (version 20231120)
+  (generator "eeschema")
+  (generator_version "8.0")
+  (uuid "a1b2c3d4-e5f6-7890-abcd-ef1234567890")
+  (paper "A3")
+
+  (title_block
+    (title "VIGIL Headband v1.0")
+    (date "2025-02-22")
+    (rev "1.0")
+    (comment 1 "Low-cost continuous patient monitoring headband")
+    (comment 2 "4 vital signs: HR, Temp, RR, Pulse waveform")
+    (comment 3 "BLE via nRF52840 | Flex PCB 185x35mm")
+    (comment 4 "License: CERN-OHL-P-2.0")
+  )
+
+  ;; ===== POWER SYMBOLS =====
+  (symbol (lib_id "power:+3V3") (at 60 20 0) (unit 1)
+    (in_bom no) (on_board no) (dnp no)
+    (uuid "pwr-3v3-1")
+    (property "Reference" "#PWR01" (at 60 16 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "+3V3" (at 60 16 0) (effects (font (size 1.27 1.27))))
+  )
+
+  (symbol (lib_id "power:GND") (at 60 180 0) (unit 1)
+    (in_bom no) (on_board no) (dnp no)
+    (uuid "pwr-gnd-1")
+    (property "Reference" "#PWR02" (at 60 186 0) (effects (font (size 1.27 1.27)) hide))
+    (property "Value" "GND" (at 60 184 0) (effects (font (size 1.27 1.27))))
+  )
+
+  ;; ===== U1 - nRF52840 (BLE SoC) =====
+  (symbol (lib_id "RF_Module:nRF52840-QIAA") (at 100 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u1-nrf52840")
+    (property "Reference" "U1" (at 100 55 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "nRF52840-QIAA" (at 100 57 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_DFN_QFN:QFN-73-1EP_7x7mm_P0.4mm_EP5.3x5.3mm" (at 100 80 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C190794" (at 100 80 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U2 - LIS3DHTR (Accelerometer - Heart Rate BCG) =====
+  (symbol (lib_id "Sensor_Motion:LIS3DH") (at 200 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u2-lis3dh")
+    (property "Reference" "U2" (at 200 35 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "LIS3DHTR" (at 200 37 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_LGA:LGA-16_3x3mm_P0.5mm" (at 200 50 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C15134" (at 200 50 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U3 - TMP117 (Temperature Sensor) =====
+  (symbol (lib_id "Sensor_Temperature:TMP117") (at 200 100 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u3-tmp117")
+    (property "Reference" "U3" (at 200 85 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "TMP117AIDRVR" (at 200 87 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP0.65x1.4mm" (at 200 100 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C699536" (at 200 100 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U4 - ICS-43434 (MEMS Microphone - Respiratory Rate) =====
+  (symbol (lib_id "Audio:ICS-43434") (at 200 150 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u4-ics43434")
+    (property "Reference" "U4" (at 200 135 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "ICS-43434 [HAND SOLDER]" (at 200 137 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_LGA:LGA-6_3.5x2.65mm_P1.27mm" (at 200 150 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C5656610" (at 200 150 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U5 - AD8606 (Dual Op-Amp for PVDF) =====
+  (symbol (lib_id "Amplifier_Operational:AD8606") (at 300 80 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u5-ad8606")
+    (property "Reference" "U5" (at 300 65 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "AD8606ARMZ-R7" (at 300 67 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_SO:MSOP-8_3x3mm_P0.65mm" (at 300 80 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C408833" (at 300 80 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U6 - TPS62840 (Buck Converter) =====
+  (symbol (lib_id "Regulator_Switching:TPS62840") (at 50 140 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u6-tps62840")
+    (property "Reference" "U6" (at 50 125 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "TPS62840DLCR [HAND SOLDER]" (at 50 127 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_SON:WSON-8-1EP_2x2mm_P0.5mm_EP0.9x1.6mm" (at 50 140 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C2071859" (at 50 140 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== U7 - BQ24072 (Battery Charger) =====
+  (symbol (lib_id "Battery_Management:BQ24072") (at 50 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "u7-bq24072")
+    (property "Reference" "U7" (at 50 35 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "BQ24072RGTR" (at 50 37 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Package_DFN_QFN:QFN-16-1EP_3x3mm_P0.5mm_EP1.68x1.68mm" (at 50 50 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C140288" (at 50 50 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== Y1 - Crystal =====
+  (symbol (lib_id "Device:Crystal") (at 130 110 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "y1-crystal")
+    (property "Reference" "Y1" (at 130 103 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "32.768kHz [HAND SOLDER]" (at 130 117 0) (effects (font (size 1.27 1.27))))
+    (property "Footprint" "Crystal:Crystal_SMD_2012-2Pin_2.0x1.2mm" (at 130 110 0) (effects (font (size 1.27 1.27)) hide))
+    (property "LCSC" "C32346" (at 130 110 0) (effects (font (size 1.27 1.27)) hide))
+  )
+
+  ;; ===== NOTES =====
+  (text "SIGNAL FLOW:\n\nPVDF Sensors (temples) -> AD8606 (U5) -> nRF52840 ADC\nLIS3DH (U2) -> I2C -> nRF52840\nTMP117 (U3) -> I2C -> nRF52840\nICS-43434 (U4) -> I2S -> nRF52840\nnRF52840 -> BLE 5.0 -> Phone/Tablet\n\nPOWER:\nUSB-C (J1) -> BQ24072 (U7) -> LiPo Battery\nBattery -> TPS62840 (U6) + L1 -> 3.3V Rail\n\nI2C BUS: SDA + SCL with 4.7k pull-ups (R1, R2)"
+    (at 20 200 0)
+    (effects (font (size 1.5 1.5)) (justify left))
+  )
+)
